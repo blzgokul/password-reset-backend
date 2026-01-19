@@ -42,17 +42,18 @@ if (!user) {
     const resetLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
     // 6. Send email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: user.email,
-      subject: "Password Reset Request",
-      html: `
-        <h3>Password Reset</h3>
-        <p>Click the link below to reset your password:</p>
-        <a href="${resetLink}">${resetLink}</a>
-        <p>This link will expire in 15 minutes.</p>
-      `
-    });
+  await transporter.sendMail({
+  from: "Password Reset <blackzzayn@gmail.com>", 
+  to: user.email,
+  subject: "Password Reset Request",
+  html: `
+    <h3>Password Reset</h3>
+    <p>Click the link below to reset your password:</p>
+    <a href="${resetLink}">${resetLink}</a>
+    <p>This link will expire in 15 minutes.</p>
+  `
+});
+
 
     res.json({ message: "Password reset link sent to email" });
   } catch (error) {
